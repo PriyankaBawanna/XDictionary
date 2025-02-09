@@ -53,16 +53,7 @@ describe("Dictionary App Component Tests", () => {
     expect(button).toBeEnabled();
   });
 
-  test("No Search Term Tests", () => {
-    render(<XDictionary />);
-    const button = screen.getByText("Search");
 
-    // Click search without typing anything
-    fireEvent.click(button);
-
-    // Expect "Word not found in the dictionary." message
-    expect(screen.getByText("Word not found in the dictionary.")).toBeInTheDocument();
-  });
 
   test("User Interface Tests", () => {
     render(<XDictionary />);
@@ -74,3 +65,21 @@ describe("Dictionary App Component Tests", () => {
   });
 
 });
+
+test('should display "No results" when no search term is entered', () => {
+    render(<XDictionary />);
+  
+    // Check that "No results" is displayed by default (when no search term is entered)
+    const noResultsMessage = screen.getByText(/No results/i);
+    expect(noResultsMessage).toBeInTheDocument();
+  
+    // Find the search button
+    const searchButton = screen.getByText(/Search/i);
+  
+    // Trigger search click without entering any search term
+    fireEvent.click(searchButton);
+  
+    // Assert that "No results" is still displayed when the search term is empty
+    expect(screen.getByText(/No results/i)).toBeInTheDocument();
+  });
+  
