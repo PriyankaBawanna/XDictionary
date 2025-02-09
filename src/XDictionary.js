@@ -8,19 +8,22 @@ const XDictionary = () => {
   ];
   const [searchTerm, setSearchTerm] = useState("");
   const [definition, setDefinition] = useState("");
+  const [error, setError] = useState("");
 
   const handleSearch = () => {
     const trimmedSearch = searchTerm.trim().toLowerCase();
   
     if (!trimmedSearch) {
-      setDefinition(""); 
+      setDefinition(""); // Clear previous results
+      setError("Please enter a word to search."); // Show error message
       return;
     }
+  
+    setError(""); // Clear any previous error
   
     const result = dictionary.find((entry) => entry.word.toLowerCase() === trimmedSearch);
     setDefinition(result ? result.meaning : "Word not found in the dictionary.");
   };
-  
 
   return (
     <div className="p-6 max-w-md mx-auto bg-white shadow-lg rounded-lg text-center">
@@ -46,7 +49,7 @@ const XDictionary = () => {
       </button>
       
       <h3 className="text-lg font-semibold">Definition:</h3>
-      <p>{definition}</p>
+      <p>{definition ? definition : error}</p>
     </div>
   );
 };
