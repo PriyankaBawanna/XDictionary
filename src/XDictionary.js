@@ -11,13 +11,16 @@ const XDictionary = () => {
 
   const handleSearch = () => {
     const trimmedSearch = searchTerm.trim().toLowerCase();
-    if (!trimmedSearch) return;
-
-   
+  
+    if (!trimmedSearch) {
+      setDefinition(""); 
+      return;
+    }
+  
     const result = dictionary.find((entry) => entry.word.toLowerCase() === trimmedSearch);
-
     setDefinition(result ? result.meaning : "Word not found in the dictionary.");
   };
+  
 
   return (
     <div className="p-6 max-w-md mx-auto bg-white shadow-lg rounded-lg text-center">
