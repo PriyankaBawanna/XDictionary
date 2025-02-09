@@ -35,7 +35,7 @@ const XDictionary = () => {
         id="search-input"
         type="text"
         className="border border-gray-300 rounded-md px-3 py-2 w-full mb-4"
-        placeholder="Search for a word..."
+        placeholder="Enter a word..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
@@ -49,7 +49,7 @@ const XDictionary = () => {
       </button>
       
       <h3 className="text-lg font-semibold">Definition:</h3>
-      <p>{definition ? definition : error}</p>
+      <p>{definition ? definition : "Word not found in the dictionary."}</p>
     </div>
   );
 };
